@@ -96,7 +96,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} pyredsql contributors.`,
+      copyright: 'Copyright © 2026 enumura1.',
     },
     prism: {
       theme: require('prism-react-renderer').themes.github,
