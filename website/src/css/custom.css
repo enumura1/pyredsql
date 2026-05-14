@@ -26,8 +26,26 @@
   --pyredsql-code-border: rgb(255 255 255 / 8%);
   --pyredsql-code-text: #e7edf7;
   --pyredsql-code-muted: #9fb0c8;
+  --pyredsql-code-dim: #7890ad;
+  --pyredsql-syntax-keyword: #93c5fd;
+  --pyredsql-syntax-string: #86efac;
+  --pyredsql-syntax-comment: #7890ad;
+  --pyredsql-syntax-number: #fcd34d;
+  --pyredsql-syntax-variable: #f0abfc;
+  --pyredsql-syntax-operator: #cbd5e1;
+  --pyredsql-terminal-prompt: #5eead4;
+  --pyredsql-workflow-ring: rgb(94 234 212 / 28%);
+  --pyredsql-workflow-shadow: rgb(15 23 42 / 16%);
+  --pyredsql-safe-bg: rgb(20 184 166 / 16%);
+  --pyredsql-safe-text: #99f6e4;
+  --pyredsql-skip-bg: rgb(245 158 11 / 17%);
+  --pyredsql-skip-text: #fcd78a;
+  --pyredsql-arrow-bg: #14b8a6;
+  --pyredsql-arrow-text: #052e2b;
   --pyredsql-command-bg: #f3f6fb;
+  --pyredsql-command-border: #d9e0ea;
   --pyredsql-command-text: #243044;
+  --pyredsql-command-label: #617087;
 }
 
 [data-theme='dark'] {
@@ -53,8 +71,26 @@
   --pyredsql-code-border: #25314a;
   --pyredsql-code-text: #e7edf7;
   --pyredsql-code-muted: #a8b5c7;
+  --pyredsql-code-dim: #71829c;
+  --pyredsql-syntax-keyword: #93c5fd;
+  --pyredsql-syntax-string: #86efac;
+  --pyredsql-syntax-comment: #71829c;
+  --pyredsql-syntax-number: #fcd34d;
+  --pyredsql-syntax-variable: #f0abfc;
+  --pyredsql-syntax-operator: #cbd5e1;
+  --pyredsql-terminal-prompt: #5eead4;
+  --pyredsql-workflow-ring: rgb(94 234 212 / 30%);
+  --pyredsql-workflow-shadow: rgb(0 0 0 / 26%);
+  --pyredsql-safe-bg: rgb(20 184 166 / 18%);
+  --pyredsql-safe-text: #99f6e4;
+  --pyredsql-skip-bg: rgb(245 158 11 / 18%);
+  --pyredsql-skip-text: #fcd78a;
+  --pyredsql-arrow-bg: #2dd4bf;
+  --pyredsql-arrow-text: #042f2e;
   --pyredsql-command-bg: #0f172a;
+  --pyredsql-command-border: #25314a;
   --pyredsql-command-text: #dce6f6;
+  --pyredsql-command-label: #91a2bb;
 }
 
 .theme-doc-markdown h1 {

@@ -1,7 +1,7 @@
 .hero {
   padding: 5rem 0 4rem;
   background:
-    radial-gradient(circle at 12% 20%, var(--pyredsql-hero-accent), transparent 32%),
+    linear-gradient(90deg, var(--pyredsql-hero-accent), transparent 42%),
     linear-gradient(135deg, var(--pyredsql-hero-bg-start), var(--pyredsql-hero-bg-end));
 }
 
@@ -26,7 +26,7 @@
 
 .heroTitle {
   color: var(--pyredsql-text-strong);
-  font-size: 3.1rem;
+  font-size: 4rem;
   line-height: 1.05;
   margin-bottom: 1rem;
 }
@@ -48,7 +48,7 @@
   background: var(--pyredsql-code-panel);
   color: var(--pyredsql-code-text);
   border: 1px solid var(--pyredsql-code-border);
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 20px 45px var(--pyredsql-shadow);
 }
@@ -56,7 +56,7 @@
 .previewTitle {
   display: grid;
   gap: 0.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
 }
 
 .previewTitle strong {
@@ -72,9 +72,63 @@
 }
 
 .previewStep {
+  position: relative;
   display: grid;
-  gap: 0.5rem;
-  margin-top: 0.85rem;
+  gap: 0.42rem;
+  margin-top: 0.75rem;
+  padding: 0.85rem;
+  border: 1px solid var(--pyredsql-code-border);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 4%), transparent),
+    var(--pyredsql-code-block);
+  opacity: 0.68;
+  transition: opacity 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+  animation: previewStepCycle 9s ease-in-out infinite;
+}
+
+.previewStep::before {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 0.52rem;
+  height: 0.52rem;
+  border-radius: 999px;
+  background: var(--pyredsql-code-muted);
+  opacity: 0.55;
+}
+
+.preview > .previewStep:nth-child(2) { animation-delay: 0s; }
+.preview > .previewStep:nth-child(3) { animation-delay: 3s; }
+.preview > .previewStep:nth-child(4) { animation-delay: 6s; }
+
+@keyframes previewStepCycle {
+  0%, 22% {
+    opacity: 0.68;
+    border-color: var(--pyredsql-code-border);
+    box-shadow: none;
+    transform: translateY(0);
+  }
+  33%, 55% {
+    opacity: 1;
+    border-color: var(--pyredsql-terminal-prompt);
+    box-shadow: 0 0 0 1px var(--pyredsql-workflow-ring), 0 14px 30px var(--pyredsql-workflow-shadow);
+    transform: translateY(-2px);
+  }
+  66%, 100% {
+    opacity: 0.68;
+    border-color: var(--pyredsql-code-border);
+    box-shadow: none;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .previewStep {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 .previewStep span {
@@ -83,13 +137,88 @@
   font-weight: 700;
 }
 
-.preview pre {
+.previewStep strong {
+  color: var(--pyredsql-code-text);
+  font-size: 0.9rem;
+}
+
+.syntaxBlock {
+  min-width: 0;
+}
+
+.syntaxBlock pre {
   margin: 0;
-  padding: 1rem;
+  padding: 0.95rem;
   border-radius: 8px;
-  background: var(--pyredsql-code-block);
+  background: transparent;
+  font-size: 0.78rem;
+  line-height: 1.58;
   overflow-x: auto;
-  white-space: pre-wrap;
+  color: var(--pyredsql-code-text);
+  white-space: pre;
+}
+
+.syntaxBlock code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.codeLine {
+  display: inline;
+}
+
+.codeKeyword {
+  color: var(--pyredsql-syntax-keyword);
+  font-weight: 800;
+}
+
+.codeString {
+  color: var(--pyredsql-syntax-string);
+}
+
+.codeComment {
+  color: var(--pyredsql-syntax-comment);
+  font-style: italic;
+}
+
+.codeNumber {
+  color: var(--pyredsql-syntax-number);
+}
+
+.codeVariable {
+  color: var(--pyredsql-syntax-variable);
+}
+
+.codeOperator {
+  color: var(--pyredsql-syntax-operator);
+}
+
+.promptLine {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+  margin: 0;
+  color: var(--pyredsql-code-text);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.promptLine span {
+  flex: 0 0 auto;
+  color: var(--pyredsql-terminal-prompt);
+  font-weight: 800;
+}
+
+.promptLine code {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 0;
 }
 
 .features {
@@ -118,14 +247,19 @@
 
 .featureItem {
   display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr) minmax(280px, 0.75fr);
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1.35rem;
+  gap: 1.25rem;
+  padding: 1.75rem;
   border: 1px solid var(--pyredsql-border);
-  border-radius: 12px;
+  border-radius: 8px;
   background: var(--pyredsql-card-bg);
   box-shadow: 0 12px 30px var(--pyredsql-card-shadow);
+}
+
+.featureHeader {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
 }
 
 .stepBadge {
@@ -133,7 +267,7 @@
   place-items: center;
   width: 3.25rem;
   height: 3.25rem;
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--pyredsql-step-bg);
   color: var(--pyredsql-step-text);
   font-weight: 800;
@@ -152,13 +286,269 @@
 }
 
 .command {
+  display: grid;
+  gap: 0.45rem;
   margin: 0;
-  padding: 0.95rem 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--pyredsql-command-border);
   border-radius: 8px;
   background: var(--pyredsql-command-bg);
   color: var(--pyredsql-command-text);
+}
+
+.command > span {
+  color: var(--pyredsql-command-label);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.command .promptLine {
+  color: var(--pyredsql-command-text);
+}
+
+.featurePreview {
+  margin: 0;
+  border: 1px solid var(--pyredsql-code-border);
+  border-radius: 8px;
+  background: var(--pyredsql-code-panel);
+  color: var(--pyredsql-code-text);
+  overflow: hidden;
+}
+
+.featurePreviewHeader {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--pyredsql-code-border);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pyredsql-code-muted);
+  background: rgb(255 255 255 / 2%);
+}
+
+.featurePreviewBody {
+  padding: 0;
+}
+
+.terminalPreview {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.terminalPreview .promptLine {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--pyredsql-code-border);
+  border-radius: 8px;
+  background: var(--pyredsql-code-block);
+}
+
+.resultTable {
+  display: grid;
+  border: 1px solid var(--pyredsql-code-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.resultRow {
+  display: grid;
+  grid-template-columns: minmax(10rem, 1.1fr) minmax(8.5rem, 0.85fr) minmax(5rem, 0.45fr) minmax(7rem, auto);
+  gap: 0.9rem;
+  align-items: center;
+  padding: 0.72rem 0.85rem;
+  background: var(--pyredsql-code-block);
+  font-size: 0.8rem;
+}
+
+.resultRow + .resultRow {
+  border-top: 1px solid var(--pyredsql-code-border);
+}
+
+.resultFile,
+.resultName {
+  min-width: 0;
+  color: var(--pyredsql-code-text);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resultName {
+  color: var(--pyredsql-code-muted);
+}
+
+.resultLines {
+  color: var(--pyredsql-code-muted);
+  white-space: nowrap;
+}
+
+.safePill,
+.skipPill {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.65rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.safePill {
+  color: var(--pyredsql-safe-text);
+  background: var(--pyredsql-safe-bg);
+}
+
+.skipPill {
+  color: var(--pyredsql-skip-text);
+  background: var(--pyredsql-skip-bg);
+}
+
+.resultSummary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+  color: var(--pyredsql-code-muted);
+  font-size: 0.82rem;
+}
+
+.resultSummary strong,
+.resultSummary span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0.25rem 0.65rem;
+  border: 1px solid var(--pyredsql-code-border);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 3%);
+}
+
+.resultSummary strong {
+  color: var(--pyredsql-code-text);
+}
+
+.beforeAfterPreview {
+  display: grid;
+  gap: 0.95rem;
+  padding: 1rem;
+}
+
+.previewSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 0.8rem;
+  align-items: stretch;
+}
+
+.codePane {
+  min-width: 0;
+  border: 1px solid var(--pyredsql-code-border);
+  border-radius: 8px;
   overflow-x: auto;
-  white-space: pre-wrap;
+  background: var(--pyredsql-code-block);
+}
+
+.codePaneHeader {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--pyredsql-code-border);
+  color: var(--pyredsql-code-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.codePaneHeader code {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--pyredsql-code-dim);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-transform: none;
+}
+
+.afterStack {
+  display: grid;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.previewArrow {
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--pyredsql-code-border);
+  border-radius: 999px;
+  color: var(--pyredsql-arrow-text);
+  background: var(--pyredsql-arrow-bg);
+  font-weight: 900;
+  animation: arrowPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes arrowPulse {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+.changeNotes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.changeNotes li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.8rem;
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--pyredsql-code-border);
+  border-radius: 999px;
+  color: var(--pyredsql-code-muted);
+  background: rgb(255 255 255 / 3%);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .previewSplit {
+    grid-template-columns: 1fr;
+  }
+
+  .previewArrow {
+    justify-self: center;
+    transform: rotate(90deg);
+    animation: none;
+  }
+
+  .resultRow {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .safePill,
+  .skipPill {
+    justify-self: start;
+  }
 }
 
 @media (max-width: 996px) {
@@ -167,12 +557,12 @@
   }
 
   .heroTitle {
-    font-size: 2.35rem;
+    font-size: 3rem;
   }
 
-  .featureItem {
+  .featureHeader {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 0.75rem;
   }
 
   .stepBadge {
